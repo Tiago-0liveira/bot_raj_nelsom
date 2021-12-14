@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+    },
+    "exclude": [
+        "node_modules",
+        "**/*spec.ts"
+    ], 
+    "include": [
+        "src/**/*"
+    ]
+}
