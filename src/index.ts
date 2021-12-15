@@ -9,6 +9,9 @@ client.on("ready", async () => {
 	console.log(`Logged in as ${client.user.tag}.`);
 });
 
+Commands.registerCommand(new Command(["nelsom"],"Nelsom","Shows Nelsom","nelsom",false, (message, author, member, mentions, guild) => {
+	message.channel.send("", {files: ["https://i.imgur.com/poLRPQQ.png"]})
+}))
 
 client.on("message", Commands.onNewMessage)
 client.login(TOKEN);
