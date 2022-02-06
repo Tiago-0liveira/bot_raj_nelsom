@@ -1,7 +1,10 @@
 {
     "compilerOptions": {
-		"resolveJsonModule": true,
+        "moduleResolution": "Node",
+        "module": "commonjs",
+        "resolveJsonModule": true,
 		"esModuleInterop": true,
+        "target": "es2020",
     },
     "exclude": [
         "node_modules",

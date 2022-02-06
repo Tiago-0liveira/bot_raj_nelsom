@@ -18,9 +18,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-exports.__esModule = true;
-exports.COLORS = exports.PREFIX = exports.TOKEN = void 0;
-var dotenv = __importStar(require("dotenv"));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AMIGO_RAJ_ID = exports.COLORS = exports.PREFIX = exports.TOKEN = void 0;
+const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 exports.TOKEN = process.env.TOKEN;
 exports.PREFIX = process.env.PREFIX;
@@ -28,5 +28,6 @@ exports.COLORS = {
     BLUE: "#00B9EB",
     RED: "#FF4119",
     YELLOW: "#EBE400",
-    GREEN: "#00FF80"
+    GREEN: "#00FF80",
 };
+exports.AMIGO_RAJ_ID = "265545968177381377";

@@ -1,8 +1,8 @@
 "use strict";
-exports.__esModule = true;
-var discord_js_1 = require("discord.js");
-var consts_1 = require("../consts");
-var helpers_1 = require("../helpers");
+Object.defineProperty(exports, "__esModule", { value: true });
+const discord_js_1 = require("discord.js");
+const consts_1 = require("../consts");
+const helpers_1 = require("../helpers");
 /**
  * @class Command
  * @classdesc New Discord Chat Command
@@ -10,7 +10,7 @@ var helpers_1 = require("../helpers");
  * @method onCommand
  * @method ShowUsage
 */
-var Command = /** @class */ (function () {
+class Command {
     /**
      * @constructor Command
      * @param alias string[] —> command alia's
@@ -22,9 +22,7 @@ var Command = /** @class */ (function () {
      * @param prefix string | default to GlobalPrefix —> command prefix
      * @param deleteMessage deleteType | default to "after" —> when to delete message "after" | "never"
      */
-    function Command(alias, label, description, usage, needsPerms, onCommand, prefix, deleteMessage) {
-        if (prefix === void 0) { prefix = consts_1.PREFIX; }
-        if (deleteMessage === void 0) { deleteMessage = "never"; }
+    constructor(alias, label, description, usage, needsPerms, onCommand, prefix = consts_1.PREFIX, deleteMessage = "never") {
         this.prefix = consts_1.PREFIX;
         this.deleteMessage = "after";
         this.alias = alias;
@@ -45,17 +43,17 @@ var Command = /** @class */ (function () {
      * @param Mentions Collection<string, GuildMember>
      * @param Guild Guild
      */
-    Command.prototype.execute = function (message, author, member, Mentions, Guild) {
+    execute(message, author, member, Mentions, Guild) {
         if ((this.needsPerms && (0, helpers_1.isTrustedUser)(member)) || !this.needsPerms) {
             this.onCommand(message, author, member, Mentions, Guild);
         }
         else {
-            var sentMessage_1;
-            message.channel.send((0, helpers_1.getErrorEmbed)("Not Enough Perms!")).then(function (m) { return sentMessage_1 = m; });
-            if (sentMessage_1) {
-                setTimeout(function () {
+            let sentMessage;
+            message.channel.send((0, helpers_1.getErrorEmbed)("Not Enough Perms!")).then(m => sentMessage = m);
+            if (sentMessage) {
+                setTimeout(() => {
                     try {
-                        sentMessage_1.deletable && sentMessage_1["delete"]();
+                        sentMessage.deletable && sentMessage.delete();
                     }
                     catch (error) {
                         console.error(error);
@@ -65,21 +63,20 @@ var Command = /** @class */ (function () {
         }
         if (this.deleteMessage === "after") {
             try {
-                message.deletable && message["delete"]();
+                message.deletable && message.delete();
             }
             catch (error) {
                 console.error(error);
             }
         }
-    };
+    }
     /**
      * @method Usage
      * @param member GuildMember
      */
-    Command.prototype.ShowUsage = function (member) {
+    ShowUsage(member) {
         member.send(new discord_js_1.MessageEmbed()
             .addField("Usage", this.usage));
-    };
-    return Command;
-}());
-exports["default"] = Command;
+    }
+}
+exports.default = Command;

@@ -1,20 +1,20 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSuccessEmbed = exports.getErrorEmbed = exports.isTrustedUser = void 0;
-var discord_js_1 = require("discord.js");
-var config_json_1 = require("./config.json");
-var consts_1 = require("./consts");
-var isTrustedUser = function (member) {
-    return config_json_1.trustedUsers.includes(member.id) || member.roles.cache.map(function (r) { return r.id; }).some(function (r) { return config_json_1.trustedRoles.includes(r); });
+const discord_js_1 = require("discord.js");
+const config_json_1 = require("./config.json");
+const consts_1 = require("./consts");
+const isTrustedUser = (member) => {
+    return config_json_1.trustedUsers.includes(member.id) || member.roles.cache.map(r => r.id).some(r => config_json_1.trustedRoles.includes(r));
 };
 exports.isTrustedUser = isTrustedUser;
-var getErrorEmbed = function (error) {
+const getErrorEmbed = (error) => {
     return new discord_js_1.MessageEmbed()
         .setColor(consts_1.COLORS.RED)
         .addField("Error", error);
 };
 exports.getErrorEmbed = getErrorEmbed;
-var getSuccessEmbed = function (msg) {
+const getSuccessEmbed = (msg) => {
     return new discord_js_1.MessageEmbed()
         .setColor(consts_1.COLORS.GREEN)
         .addField("Success", msg);
